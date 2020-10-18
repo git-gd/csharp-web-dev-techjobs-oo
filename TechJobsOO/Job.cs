@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace TechJobsOO
@@ -40,15 +42,25 @@ namespace TechJobsOO
             return HashCode.Combine(Id);
         }
 
+        private static string hasData(string str)
+        {
+            if (str.Length > 0) return str;
+ 
+            return "Data not available";
+        }
+
         public override string ToString()
         {
-            string oName = (Name.Length > 0) ? Name : "Data not available";
-            string oEmployerName = (EmployerName.ToString().Length > 0) ? EmployerName.ToString() : "Data not available";
-            string oEmployerLocation = (EmployerLocation.ToString().Length > 0) ? EmployerLocation.ToString() : "Data not available";
-            string oJobType = (JobType.ToString().Length > 0) ? JobType.ToString() : "Data not available";
-            string oJobCoreCompetency = (JobCoreCompetency.ToString().Length > 0) ? JobCoreCompetency.ToString() : "Data not available";
+            if (Name.Length + EmployerName.Value.Length + EmployerLocation.Value.Length + JobType.Value.Length + JobCoreCompetency.Value.Length < 1) return $"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}{Environment.NewLine}";
 
-            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {oName}{Environment.NewLine}Employer: {oEmployerName}{Environment.NewLine}Location: {oEmployerLocation}{Environment.NewLine}Position Type: {oJobType}{Environment.NewLine}Core Competency: {oJobCoreCompetency}{Environment.NewLine}{Environment.NewLine}";
+            string name = hasData(Name);
+            string employerName = hasData(EmployerName.Value);
+            string employerLocation = hasData(EmployerLocation.Value);
+            string jobType = hasData(JobType.Value);
+            string jobCoreCompetency = hasData(JobCoreCompetency.Value);
+
+            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {name}{Environment.NewLine}Employer: {employerName}{Environment.NewLine}Location: {employerLocation}{Environment.NewLine}Position Type: {jobType}{Environment.NewLine}Core Competency: {jobCoreCompetency}{Environment.NewLine}{Environment.NewLine}";
+
             return output;
         }
 

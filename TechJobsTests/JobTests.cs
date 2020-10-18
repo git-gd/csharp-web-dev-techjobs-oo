@@ -57,7 +57,9 @@ namespace TechJobsTests
 
             string output = job.ToString();
 
-            Assert.IsTrue(output.StartsWith(Environment.NewLine) && output.EndsWith(Environment.NewLine));
+            // Testing for a blank preceding line just needs a single NewLine because we should always start on a NewLine.
+            // Testing for a blank trailing line needs to find two NewLine entries or else the last line may not be blank.
+            Assert.IsTrue(output.StartsWith(Environment.NewLine) && output.EndsWith($"{Environment.NewLine}{Environment.NewLine}"));
         }
 
         [TestMethod]
@@ -90,7 +92,39 @@ namespace TechJobsTests
         [TestMethod]
         public void EmptyFieldSetToDataNotAvailable()
         {
-            //If a field is empty, the method should add, “Data not available” after the label.
+            // If a field is empty, the method should add, “Data not available” after the label.
+            Employer employerB = new Employer("");
+            Location locationB = new Location("");
+            PositionType positionTypeB = new PositionType("");
+            CoreCompetency coreCompetencyB = new CoreCompetency("");
+
+            // Name set but all else are empty strings "", test all fields except for Name to ensure they are set to "Data not available"
+            Job job = new Job("NOT_BLANK", employerB, locationB, positionTypeB, coreCompetencyB);
+
+            string output = job.ToString();
+
+            string[] line = output.Split(Environment.NewLine);
+
+
+            Assert.IsTrue(line[3] == $"Employer: Data not available");
+            Assert.IsTrue(line[4] == $"Location: Data not available");
+            Assert.IsTrue(line[5] == $"Position Type: Data not available");
+            Assert.IsTrue(line[6] == $"Core Competency: Data not available");
+
+            // Name is now an empty string and employer is set, test Name to ensure "Data not available" is returned
+            job = new Job("", employer, locationB, positionTypeB, coreCompetencyB);
+
+            output = job.ToString();
+
+            line = output.Split(Environment.NewLine);
+
+            Assert.IsTrue(line[2] == $"Name: Data not available");
+        }
+
+        [TestMethod]
+        public void NoJobFieldSetReturnsErrorMessage()
+        {
+            // (Bonus) If a Job object ONLY contains data for the id field, the method should return, “OOPS! This job does not seem to exist.”
             Employer employerB = new Employer("");
             Location locationB = new Location("");
             PositionType positionTypeB = new PositionType("");
@@ -100,16 +134,7 @@ namespace TechJobsTests
 
             string output = job.ToString();
 
-            string[] line = output.Split(Environment.NewLine);
-
-            Assert.IsTrue(line[0] == "");
-            Assert.IsTrue(line[1] == $"ID: {job.Id}");
-            Assert.IsTrue(line[2] == $"Name: Data not available");
-            Assert.IsTrue(line[3] == $"Employer: Data not available");
-            Assert.IsTrue(line[4] == $"Location: Data not available");
-            Assert.IsTrue(line[5] == $"Position Type: Data not available");
-            Assert.IsTrue(line[6] == $"Core Competency: Data not available");
-            Assert.IsTrue(line[7] == "");
+            Assert.AreEqual($"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}{Environment.NewLine}", output);
         }
     }
 }
