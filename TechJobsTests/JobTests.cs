@@ -37,5 +37,20 @@ namespace TechJobsTests
             Assert.AreEqual(job.JobType.Value, "Quality control");
             Assert.AreEqual(job.JobCoreCompetency.Value, "Persistence");
         }
+
+        [TestMethod]
+        public void TestJobsForEquality()
+        {
+            // Generate two Job objects that have identical field values EXCEPT for id. Test that Equals() returns false.
+            Employer employer = new Employer("ACME");
+            Location location = new Location("Desert");
+            PositionType positionType = new PositionType("Quality control");
+            CoreCompetency coreCompetency = new CoreCompetency("Persistence");
+
+            Job jobA = new Job("Product tester", employer, location, positionType, coreCompetency);
+            Job jobB = new Job("Product tester", employer, location, positionType, coreCompetency);
+
+            Assert.IsFalse(jobA.Equals(jobB));
+        }
     }
 }
