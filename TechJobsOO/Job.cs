@@ -42,7 +42,8 @@ namespace TechJobsOO
 
         public override string ToString()
         {
-            return $"{Environment.NewLine}{Environment.NewLine}";
+            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {Name}{Environment.NewLine}Employer: {EmployerName.ToString()}{Environment.NewLine}Location: {EmployerLocation.ToString()}{Environment.NewLine}Position Type: {JobType.ToString()}{Environment.NewLine}Core Competency: {JobCoreCompetency.ToString()}{Environment.NewLine}{Environment.NewLine}";
+            return output;
         }
 
         // DONE: Add the two necessary constructors.

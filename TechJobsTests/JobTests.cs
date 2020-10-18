@@ -52,11 +52,39 @@ namespace TechJobsTests
         [TestMethod]
         public void JobToStringHasBlankLineBeforeAndAfter()
         {
+            // When passed a Job object, it should return a string that contains a blank line before and after the job information.
             Job job = new Job("Product tester", employer, location, positionType, coreCompetency);
 
             string output = job.ToString();
 
             Assert.IsTrue(output.StartsWith(Environment.NewLine) && output.EndsWith(Environment.NewLine));
+        }
+
+        [TestMethod]
+        public void JobToStringProducesLabelsForEachFieldWithDataOnNewLines()
+        {
+            // The string should contain a label for each field, followed by the data stored in that field. Each field should be on its own line.
+            Job job = new Job("Product tester", employer, location, positionType, coreCompetency);
+
+            string output = job.ToString();
+
+            string[] line = output.Split(Environment.NewLine);
+
+            //ID: _______
+            //Name: _______
+            //Employer: _______
+            //Location: _______
+            //Position Type: _______
+            //Core Competency: _______
+
+            Assert.IsTrue(line[0] == "");
+            Assert.IsTrue(line[1] == $"ID: {job.Id}");
+            Assert.IsTrue(line[2] == $"Name: Product tester");
+            Assert.IsTrue(line[3] == $"Employer: {employer}");
+            Assert.IsTrue(line[4] == $"Location: {location}");
+            Assert.IsTrue(line[5] == $"Position Type: {positionType}");
+            Assert.IsTrue(line[6] == $"Core Competency: {coreCompetency}");
+            Assert.IsTrue(line[7] == "");
         }
     }
 }
