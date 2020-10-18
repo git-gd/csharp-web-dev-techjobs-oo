@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Xml;
+
 namespace TechJobsOO
 {
     public class Job
@@ -36,6 +38,11 @@ namespace TechJobsOO
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);
+        }
+
+        public override string ToString()
+        {
+            return $"{Environment.NewLine}{Environment.NewLine}";
         }
 
         // DONE: Add the two necessary constructors.
