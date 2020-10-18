@@ -86,5 +86,30 @@ namespace TechJobsTests
             Assert.IsTrue(line[6] == $"Core Competency: {coreCompetency}");
             Assert.IsTrue(line[7] == "");
         }
+
+        [TestMethod]
+        public void EmptyFieldSetToDataNotAvailable()
+        {
+            //If a field is empty, the method should add, “Data not available” after the label.
+            Employer employerB = new Employer("");
+            Location locationB = new Location("");
+            PositionType positionTypeB = new PositionType("");
+            CoreCompetency coreCompetencyB = new CoreCompetency("");
+
+            Job job = new Job("", employerB, locationB, positionTypeB, coreCompetencyB);
+
+            string output = job.ToString();
+
+            string[] line = output.Split(Environment.NewLine);
+
+            Assert.IsTrue(line[0] == "");
+            Assert.IsTrue(line[1] == $"ID: {job.Id}");
+            Assert.IsTrue(line[2] == $"Name: Data not available");
+            Assert.IsTrue(line[3] == $"Employer: Data not available");
+            Assert.IsTrue(line[4] == $"Location: Data not available");
+            Assert.IsTrue(line[5] == $"Position Type: Data not available");
+            Assert.IsTrue(line[6] == $"Core Competency: Data not available");
+            Assert.IsTrue(line[7] == "");
+        }
     }
 }

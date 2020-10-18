@@ -42,7 +42,13 @@ namespace TechJobsOO
 
         public override string ToString()
         {
-            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {Name}{Environment.NewLine}Employer: {EmployerName.ToString()}{Environment.NewLine}Location: {EmployerLocation.ToString()}{Environment.NewLine}Position Type: {JobType.ToString()}{Environment.NewLine}Core Competency: {JobCoreCompetency.ToString()}{Environment.NewLine}{Environment.NewLine}";
+            string oName = (Name.Length > 0) ? Name : "Data not available";
+            string oEmployerName = (EmployerName.ToString().Length > 0) ? EmployerName.ToString() : "Data not available";
+            string oEmployerLocation = (EmployerLocation.ToString().Length > 0) ? EmployerLocation.ToString() : "Data not available";
+            string oJobType = (JobType.ToString().Length > 0) ? JobType.ToString() : "Data not available";
+            string oJobCoreCompetency = (JobCoreCompetency.ToString().Length > 0) ? JobCoreCompetency.ToString() : "Data not available";
+
+            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {oName}{Environment.NewLine}Employer: {oEmployerName}{Environment.NewLine}Location: {oEmployerLocation}{Environment.NewLine}Position Type: {oJobType}{Environment.NewLine}Core Competency: {oJobCoreCompetency}{Environment.NewLine}{Environment.NewLine}";
             return output;
         }
 
