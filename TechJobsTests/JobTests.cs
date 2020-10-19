@@ -7,14 +7,7 @@ namespace TechJobsTests
     [TestClass]
     public class JobTests
     {
-        Job jobA, jobB = null;
-
-        [TestInitialize]
-        public void InitTest()
-        {
-            jobA = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-            jobB = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        }
+        Job jobA = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         [TestMethod]
         public void TestSettingJobId()
@@ -42,6 +35,7 @@ namespace TechJobsTests
         public void TestJobsForEquality()
         {
             // Generate two Job objects that have identical field values EXCEPT for id. Test that Equals() returns false.
+            Job jobB = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
             Assert.IsFalse(jobA.Equals(jobB));
         }
 
