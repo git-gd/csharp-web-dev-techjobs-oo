@@ -132,7 +132,7 @@ namespace TechJobsTests
 
             string output = job.ToString();
 
-            Assert.AreEqual($"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}{Environment.NewLine}", output);
+            Assert.AreEqual($"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}", output);
         }
     }
 }

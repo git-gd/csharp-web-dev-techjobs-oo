@@ -1,5 +1,4 @@
-﻿using System;
-namespace TechJobsOO
+﻿namespace TechJobsOO
 {
     public class Location : JobField
     {

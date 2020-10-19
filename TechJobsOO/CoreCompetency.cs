@@ -1,5 +1,4 @@
-﻿using System;
-namespace TechJobsOO
+﻿namespace TechJobsOO
 {
     public class CoreCompetency : JobField
     {
@@ -41,5 +40,5 @@ namespace TechJobsOO
         //    return Value;
         //}
     }
-    
+
 }

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Xml;
 
 namespace TechJobsOO
 {
@@ -42,30 +40,16 @@ namespace TechJobsOO
             return HashCode.Combine(Id);
         }
 
-        private static string hasData(string str)
-        {
-            if (str.Length > 0) return str;
- 
-            return "Data not available";
-        }
-
         public override string ToString()
         {
-            if (Name.Length + EmployerName.Value.Length + EmployerLocation.Value.Length + JobType.Value.Length + JobCoreCompetency.Value.Length < 1) return $"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}{Environment.NewLine}";
+            string[] str = { Name, EmployerName.Value, EmployerLocation.Value, JobType.Value, JobCoreCompetency.Value };
 
-            string name = hasData(Name);
-            string employerName = hasData(EmployerName.Value);
-            string employerLocation = hasData(EmployerLocation.Value);
-            string jobType = hasData(JobType.Value);
-            string jobCoreCompetency = hasData(JobCoreCompetency.Value);
+            if (string.Join("",str).Length < 1) return $"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}";
 
-            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {name}{Environment.NewLine}Employer: {employerName}{Environment.NewLine}Location: {employerLocation}{Environment.NewLine}Position Type: {jobType}{Environment.NewLine}Core Competency: {jobCoreCompetency}{Environment.NewLine}";
+            for (int i = 0; i < str.Length; i++) str[i] = str[i].Length > 0 ? str[i] : "Data not available";
 
-            return output;
+            return $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {str[0]}{Environment.NewLine}Employer: {str[1]}{Environment.NewLine}Location: {str[2]}{Environment.NewLine}Position Type: {str[3]}{Environment.NewLine}Core Competency: {str[4]}{Environment.NewLine}";
         }
 
-        // DONE: Add the two necessary constructors.
-
-        // DONE: Generate Equals() and GetHashCode() methods.
     }
 }
