@@ -35,7 +35,7 @@ namespace TechJobsTests
         public void TestJobsForEquality()
         {
             // Generate two Job objects that have identical field values EXCEPT for id. Test that Equals() returns false.
-            Job jobB = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            Job jobB = new Job("Product tester", new Employer(jobA.Name), new Location(jobA.EmployerLocation.Value), new PositionType(jobA.JobType.Value), new CoreCompetency(jobA.JobCoreCompetency.Value));
             Assert.IsFalse(jobA.Equals(jobB));
         }
 
