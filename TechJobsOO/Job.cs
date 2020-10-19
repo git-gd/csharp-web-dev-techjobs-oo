@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace TechJobsOO
 {
@@ -44,7 +43,7 @@ namespace TechJobsOO
         {
             string[] str = { Name, EmployerName.Value, EmployerLocation.Value, JobType.Value, JobCoreCompetency.Value };
 
-            if (string.Join("",str).Length < 1) return $"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}";
+            if (string.Join("", str).Length < 1) return $"{Environment.NewLine}OOPS! This job does not seem to exist.{Environment.NewLine}";
 
             for (int i = 0; i < str.Length; i++) str[i] = str[i].Length > 0 ? str[i] : "Data not available";
 
