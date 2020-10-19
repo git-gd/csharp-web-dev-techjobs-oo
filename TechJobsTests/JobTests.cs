@@ -57,9 +57,7 @@ namespace TechJobsTests
 
             string output = job.ToString();
 
-            // Testing for a blank preceding line just needs a single NewLine because we should always start on a NewLine.
-            // Testing for a blank trailing line needs to find two NewLine entries or else the last line may not be blank.
-            Assert.IsTrue(output.StartsWith(Environment.NewLine) && output.EndsWith($"{Environment.NewLine}{Environment.NewLine}"));
+            Assert.IsTrue(output.StartsWith(Environment.NewLine) && output.EndsWith($"{Environment.NewLine}"));
         }
 
         [TestMethod]

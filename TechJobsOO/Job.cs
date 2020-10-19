@@ -59,7 +59,7 @@ namespace TechJobsOO
             string jobType = hasData(JobType.Value);
             string jobCoreCompetency = hasData(JobCoreCompetency.Value);
 
-            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {name}{Environment.NewLine}Employer: {employerName}{Environment.NewLine}Location: {employerLocation}{Environment.NewLine}Position Type: {jobType}{Environment.NewLine}Core Competency: {jobCoreCompetency}{Environment.NewLine}{Environment.NewLine}";
+            string output = $"{Environment.NewLine}ID: {Id}{Environment.NewLine}Name: {name}{Environment.NewLine}Employer: {employerName}{Environment.NewLine}Location: {employerLocation}{Environment.NewLine}Position Type: {jobType}{Environment.NewLine}Core Competency: {jobCoreCompetency}{Environment.NewLine}";
 
             return output;
         }
